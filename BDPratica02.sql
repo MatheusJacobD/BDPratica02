@@ -243,3 +243,159 @@ where idProfessor = 3;
 
 -- Limpar a tabela Professor;
 truncate Professor;
+
+/*
+	Exercício 5
+*/
+
+create table Curso(
+	idCurso int primary key auto_increment,
+    nome varchar(50),
+    sigla varchar(3),
+    coordenador varchar(50)
+);
+
+INSERT INTO Curso (nome, sigla, coordenador) VALUES
+('Análise e Desenvolvimento de Sistemas', 'ADS', 'Neymar Junior'),
+('Ciência da Computação', 'CCO', 'Matheus Jacob'),
+('Sistemas de Informação', 'SIS', 'Matheus Gomes');
+
+-- Exibir todos os dados da tabela.
+select * from Curso;
+
+-- Exibir apenas os coordenadores dos cursos.
+select coordenador from Curso;
+
+-- Exibir apenas os dados dos cursos de uma determinada sigla.
+select * from Curso
+where sigla = 'CCO';
+
+-- Exibir os dados da tabela ordenados pelo nome do curso.
+select * from Curso order by nome;
+
+-- Exibir os dados da tabela ordenados pelo nome do coordenador em ordem decrescente.
+select * from Curso order by coordenador desc;
+
+-- Exibir os dados da tabela, dos cursos cujo nome comece com uma determinada letra.
+select * from Curso 
+where nome like 'S%';
+
+-- Exibir os dados da tabela, dos cursos cujo nome termine com uma determinada letra.
+select * from Curso
+where nome like '%o';
+
+-- Exibir os dados da tabela, dos cursos cujo nome tenha como segunda letra uma determinada letra.
+select * from Curso
+where nome like '_i%';
+
+-- Exibir os dados da tabela, dos cursos cujo nome tenha como penúltima letra uma determinada letra.
+select * from Curso
+where nome like '%a_';
+
+-- Elimine a tabela.
+drop table Curso;
+
+/*
+	Exercício 6
+*/
+
+create table Revista(
+	idRevista int primary key auto_increment,
+    nome varchar(40),
+    categoria varchar(30)
+);
+
+insert into Revista (nome) values
+('Guia Banco de Dados'),
+('JAVA no topo'),
+('Loucos por PHP'),
+('Como se tornar um mestre em algoritmos');
+
+-- Exibir todos os dados da tabela
+select * from Revista;
+
+-- Atualize os dados das categorias das 4 revistas inseridas.
+update Revista set categoria = 'Programação'
+where idRevista >= 1;
+
+select * from Revista;
+
+-- Insira mais 3 registros completos
+insert into Revista (nome, categoria) values
+('Javascript é legal', 'Programação'),
+('NOSQL - MongoDB', 'Programação'),
+('DotNetMaui é loucura', 'Programação');
+
+-- exibir novamente os dados da tabela
+select * from Revista;
+
+-- Exibir a descrição da estrutura da tabela
+desc Revista;
+
+-- Alterara a tabela para que a coluna categoria possa ter no maximo 40 caracteres
+alter table Revista modify categoria varchar(40);
+
+-- exibir novamente a descrição da tabela
+desc Revista;
+
+-- Acrescentar a coluna periodicidade a tabela, que é varchar(15)
+alter table Revista add periodicidade varchar(15);
+
+-- Select * from Revista
+select * from Revista;
+
+-- Excluir a coluna periodicidade
+alter table Revista drop periodicidade;
+
+/*
+	Exercício 7
+*/
+
+create table Carros(
+	idCarro int primary key auto_increment,
+    nome varchar(40),
+    placa char(7)
+) AUTO_INCREMENT = 1000;
+
+insert into Carros (nome, placa) values
+('Carro Veloz', '1234567'),
+('Carro Super Veloz', '2345678'),
+('Carro Super Mega Veloz', '3456789'),
+('Fusca', '9999999');
+
+-- exibir toddos os dados da abela
+select * from Carros;
+
+-- Insira mais 3 registros sem a placa dos carros
+insert into Carros (nome) values
+('Porsche Rápida'),
+('BMW Veloz'),
+('Carro Esportivo');
+
+-- Exibir novamente todos os dados da tabela
+select * from Carros;
+
+-- Exibir a descrição da tabela
+desc Carros;
+
+-- Alterar a tabela para que a coluna nome possa ter no maximo 28 caracteres
+alter table Carros modify nome varchar(28);
+
+-- Exibir novamente a descrição da tabela
+desc Carros;
+
+-- Acrescentar a coluna ano a tabela
+alter table Carros add ano char(4);
+
+-- atualizar todos os dados nulos da tabela
+update Carros set placa = '0283482'
+where idCarro = 1004;
+
+update Carros set placa = '2933482'
+where idCarro = 1005;
+
+update Carros set placa = '9383482'
+where idCarro = 1006;
+
+update Carros set ano = '2010'
+where idCarro >= 1000;
